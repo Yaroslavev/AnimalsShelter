@@ -1,0 +1,47 @@
+﻿@model List<Animal>
+
+<h1>Animal List</h1>
+<p>You can add and change animals there</p>
+
+<a asp-action="Add" type="button" class="btn btn-primary">Add new Animal</a>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">№</th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th scope="col">Months</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Animal i in Model)
+        {
+			<tr class="align-middle">
+				<th scope="row">@i.Id</th>
+                <td class="img-cell"><img class="td-img rounded" src="@(i.ImageUrl ?? "./img/no_image.jpg")"/></td>
+                <td>@i.Name</td>
+                <td>@i.Months</td>
+                <td>
+					@if (i.Gender?.Name.ToLower() == "male")
+					{
+                        <span class="badge bg-primary">@i.Gender.Name</span>
+                    } else if (i.Gender?.Name.ToLower() == "female") {
+                        <span class="badge bg-danger">@i.Gender.Name</span>
+                    }
+                </td>
+                <td>@i.AnimalType?.Name</td>
+                <td>@i.Description</td>
+                <td>
+                    <a asp-action="Info" asp-route-id="@i.Id" type="button" class="btn btn-outline-info"><i class="bi bi-info-circle-fill"></i></a>
+                    <a asp-action="Edit" asp-route-id="@i.Id" type="button" class="btn btn-outline-warning"><i class="bi bi-pencil-fill"></i></a>
+                    <a asp-action="Delete" asp-route-id="@i.Id" type="button" class="btn btn-outline-danger"><i class="bi bi-trash-fill"></i></a>
+                </td>
+			</tr>
+		}
+	</tbody>
+</table>

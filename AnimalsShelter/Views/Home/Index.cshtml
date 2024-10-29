@@ -1,0 +1,32 @@
+﻿@model IEnumerable<AnimalModel>;
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3 animal-list">
+    @foreach (var i in Model)
+    {
+        <div class="col">
+            <div class="card h-100 text-center">
+                <img src="@i.ImageUrl" class="card-img-top" alt="@i.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@i.Name</h5>
+                    @if (i.Months < 12)
+                    {
+                        <h6 class="card-title">@i.Months months</h6>
+                    }
+                    else if (i.Months % 12 == 0)
+                    {
+                        <h6 class="card-title">@(i.Months / 12) years</h6>
+                    }
+                    else
+                    {
+                        <h6 class="card-title">@(i.Months / 12) years @(i.Months % 12) months</h6>
+                    }
+                    <p class="card-text">@i.AnimalTypeName @i.GenderName</p>
+                    <p class="card-text">@i.Description</p>
+                </div>
+                <div class="card-footer">
+                    <a asp-controller="Animals" asp-action="Info" asp-route-id="@i.Id" class="btn btn-primary">Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,26 @@
+﻿@model Animal
+
+<div class="info-main">
+	<div class="img-div">
+		<img class="info-img rounded" src="@(Model.ImageUrl ?? "./img/no_image.jpg")"/>
+	</div>
+	<div class="info-div my-auto mx-auto">
+		<div class="card">
+			<span class="text-black mx-auto ms-5 mt-2 me-5">Name: @Model.Name</span>
+			<hr/>
+			<span class="text-black mx-auto ms-5 mb-2 me-5">Months: @Model.Months</span>
+		</div>
+		<div class="card mt-3">
+			<span class="text-black mx-auto ms-5 mt-2 me-5">Gender: @Model.Gender?.Name</span>
+			<hr/>
+			<span class="text-black mx-auto ms-5 mb-2 me-5">Animal Type: @Model.AnimalType?.Name</span>
+		</div>
+		<div class="card mx-auto mt-3">
+			<span class="text-black mx-auto ms-5 mt-2 mb-2 me-5">Description: @Model.Description</span>
+		</div>
+	</div>
+</div>
+<div class="row mt-3">
+	<a asp-action="Index" type="button" class="btn btn-dark col me-3">Back</a>
+	<a asp-action="Edit" asp-route-id="@Model.Id" type="button" class="btn btn-warning col">Edit</a>
+</div>

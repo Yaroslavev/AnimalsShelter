@@ -1,0 +1,53 @@
+﻿@model EditAnimalModel
+
+<h1>Edit Animal</h1>
+
+<form class="row g-3" method="post" enctype="multipart/form-data" asp-action="Edit">
+    <div class="col-md-12">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input asp-for="Name" type="text" class="form-control" placeholder="Enter name">
+        <span asp-validation-for="Name" class="form-text text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Months" class="form-label">Months</label>
+        <input asp-for="Months" min="0" step="1" type="number" class="form-control" placeholder="Enter months">
+        <span asp-validation-for="Months" class="form-text text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="GenderId" class="form-label">Gender</label>
+        <select asp-for="GenderId" asp-items="ViewBag.Genders" class="form-select">
+            <option disabled selected>Choose gender...</option>
+        </select>
+        <span asp-validation-for="GenderId" class="form-text text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="AnimalTypeId" class="form-label">Animal Type</label>
+        <select asp-for="AnimalTypeId" asp-items="ViewBag.AnimalTypes" class="form-select">
+            <option disabled selected>Choose animal type...</option>
+        </select>
+        <span asp-validation-for="AnimalTypeId" class="form-text text-danger"></span>
+    </div>
+
+    <div class="col-md-6">
+        <label asp-for="Image" class="form-label">Image</label>
+        <input asp-for="Image" type="file" class="form-control" placeholder="Enter image">
+        <span asp-validation-for="Image" class="form-text text-danger"></span>
+    </div>
+
+    <div class="col-12">
+        <label asp-for="Description" class="form-label">Description</label>
+        <textarea asp-for="Description" class="form-control" rows="3" placeholder="Enter description"></textarea>
+        <span asp-validation-for="Description" class="form-text text-danger"></span>
+    </div>
+    <input asp-for="ImageUrl" class="d-none" value="@Model.ImageUrl">
+
+    <div class="col-6">
+        <a asp-action="Index" type="button" class="btn btn-dark w-100">Back</a>
+    </div>
+    <div class="col-6">
+        <button type="submit" class="btn btn-primary w-100">Edit</button>
+    </div>
+</form>
